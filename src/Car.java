@@ -34,6 +34,7 @@ public class Car implements Callable<String>, Comparable<Car>
 	@Override
 	public String call()
 	{
+		String sendToC ="";
 		try
 		{
 			TimeUnit.SECONDS.sleep(speed);
@@ -46,9 +47,12 @@ public class Car implements Callable<String>, Comparable<Car>
 
 		String sendToA = "\n Platz:" + this.place + "| AutoName:"
 				+ this.getName() + " mit Speed: " + this.speed;
-		String sendToC = "\n Sie erreichten Platz : " + this.place
+		if(this.place == 1) {
+			sendToC += "Winnnnnnnnner Winner Chicken Dinner !!!! \n";
+		}
+		sendToC += "\n Sie erreichten Platz : " + this.place
 				+ " mit ihrem Auto:" + this.getName() + " Sie fuhren "
-				+ this.speed + "schnell! Das Rennen ist beendet!";
+				+ this.speed + " sec schnell! Das Rennen ist beendet!";
 		las.sendToClient(sendToC);
 
 		return sendToA;

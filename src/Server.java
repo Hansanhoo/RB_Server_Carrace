@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Server implements Runnable
 {
-	// Port des Servers
+	// Port of Servers
 	private int port;
-	// Addresse des Servers
+	// Addresse of Servers
 	private InetAddress serverAddress;
 	private ServerSocket ss2 = null;
 
@@ -36,12 +36,12 @@ public class Server implements Runnable
 	// List of Clients
 	private List<ListenAndSend> socketList;
 
-	// ClientsListenerAndSender zu CarList des Clients
+	// ClientsListenerAndSender to CarList of the Client
 	private Map<ListenAndSend, List<Car>> carsSocketMap;
 
 	private ServerTimer timer;
 
-	// constanten
+	// const
 	private static final int min = 2;
 	private static final int max = 8;
 
@@ -174,10 +174,10 @@ public class Server implements Runnable
 		if (this.registerActive)
 		{
 
-			// Liste von Autos zu Client aus HashMap holen
+			// List of Cars to Client from HashMap
 			List<Car> carsListClient = this.carsSocketMap.get(las);
 			if (carsListClient == null)
-			{ // falls beim Client noch keine Autos registriert sind
+			{ // if no cars to client registerd 
 				carsListClient = new ArrayList<>();
 			}
 			if (!carsListClient.contains(name))

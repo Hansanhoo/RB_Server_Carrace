@@ -58,7 +58,7 @@ public class ListenAndSend implements Runnable
 		{
 
 			line = is.readLine();
-
+			//hier filtern falls nicht alles als Car gesehen werden soll!!!! Client seitig abgedeckt;
 			while (line.compareTo("QUIT") != 0)
 			{
 				String name = line;
