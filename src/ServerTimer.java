@@ -38,7 +38,7 @@ public class ServerTimer implements Runnable
 	{
 		while (this.duration > 0)
 		{
-			System.out.println("Remaining: " + duration + " seconds");
+			System.out.println("Remaining: " + duration + " seconds till the race will start!");
 
 			try
 			{

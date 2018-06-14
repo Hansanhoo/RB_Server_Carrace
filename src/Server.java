@@ -97,7 +97,12 @@ public class Server implements Runnable
 		try
 		{
 			this.ss2 = new ServerSocket(port);
-
+			Runtime.getRuntime().addShutdownHook(new Thread(){public void run(){
+			    try {
+			    	ss2.close();
+			        System.out.println("The server is shut down!");
+			    } catch (IOException e) { /* failed */ }
+			}});
 			startTimer();
 			listenForClients();
 		}
@@ -130,12 +135,15 @@ public class Server implements Runnable
 			{
 				// get Socket that is accepted
 				Socket s = this.ss2.accept();
-
-				// falls Localhost als 4Tupel addresse des Clienten sich
-				// übergeben lassen(hier localhost)
+				Runtime.getRuntime().addShutdownHook(new Thread(){public void run(){
+				    try {
+				    	s.close();
+				        System.out.println("The server is shut down!");
+				    } catch (IOException e) { /* failed */ }
+				}});
 				this.serverAddress = this.ss2.getInetAddress();
-
-				System.out.println("connection Established");
+				
+				System.out.println("connection Established to this server:" +this.serverAddress );
 				// Get Car Name from CLient!And send msg
 				ListenAndSend listenSend = new ListenAndSend(s, this);
 				this.socketList.add(listenSend);

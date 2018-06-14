@@ -38,13 +38,13 @@ public class ListenAndSend implements Runnable
 	@Override
 	public void run()
 	{
-		getCarName();
+		getInput();
 	}
 
 	/**
-	 * gets Car name From Client and register Car if possible
+	 * gets Input From Client ; just register Car and quit implemented
 	 */
-	private void getCarName()
+	private void getInput()
 	{
 		try
 		{
@@ -108,11 +108,13 @@ public class ListenAndSend implements Runnable
 	{
 		try
 		{
-			os = new BufferedWriter(
-					new OutputStreamWriter(s.getOutputStream()));
-			os.write(msg);
-			os.newLine();
-			os.flush();
+			if(s.isConnected() && !s.isClosed()) {
+				os = new BufferedWriter(
+						new OutputStreamWriter(s.getOutputStream()));
+				os.write(msg);
+				os.newLine();
+				os.flush();
+			}
 		}
 		catch (IOException e)
 		{
